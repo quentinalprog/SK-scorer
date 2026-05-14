@@ -307,6 +307,7 @@ function validateRound() {
     let pirates=v('pirate',i), mermaids=v('mermaid',i),
         skull=v('skull',i), fourteen=v('fourteen',i), extra=v('extra',i);
     let score = 0;
+    const betSuccess = (bet === 0 && made === 0) || (bet > 0 && bet === made);
     if (bet === 0) {
       if (made === 0) {
         score += 10*round;
@@ -320,10 +321,12 @@ function validateRound() {
       }
     } else if (bet === made) {
       score += 20*bet;
+      score += pirates*30 + mermaids*20 + skull*40 + fourteen*10 + extra;
     } else {
       score -= 10*Math.abs(bet-made);
+      // Pari raté : aucun bonus carte, pas d'extension non plus
     }
-    score += pirates*30 + mermaids*20 + skull*40 + fourteen*10 + extra;
+    if (bet === 0 && made === 0) score += extra;
     p.total += score;
     details.push(`${p.name}: ${score>0?'+':''}${score}`);
   });
