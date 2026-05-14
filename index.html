@@ -287,9 +287,43 @@ function buildInputs() {
 function step(id, delta, min, max) {
   const el = document.getElementById(id);
   if (!el) return;
+
+  // Bloquer l'increment des bonus si plis = 0
+  const bonusMatch = id.match(/^(pirate|mermaid|skull|fourteen)(\d+)$/);
+  if (bonusMatch && delta > 0) {
+    const idx = bonusMatch[2];
+    const madeEl = document.getElementById('made'+idx);
+    const made = madeEl ? (+(madeEl.textContent) || 0) : 0;
+    if (made === 0) return;
+  }
+
   let val = +(el.textContent) || 0;
   val = Math.min(max, Math.max(min, val + delta));
   el.textContent = val;
+
+  // Si plis change, remettre bonus a 0 si made=0
+  const madeMatch = id.match(/^made(\d+)$/);
+  if (madeMatch) updateBonusState(+madeMatch[1]);
+}
+
+function updateBonusState(i) {
+  const madeEl = document.getElementById('made'+i);
+  if (!madeEl) return;
+  const made = +(madeEl.textContent) || 0;
+  const bonusIds = ['pirate','mermaid','skull','fourteen'];
+  bonusIds.forEach(field => {
+    const el = document.getElementById(field+i);
+    if (!el) return;
+    const card = el.parentElement;
+    if (made === 0) {
+      el.textContent = '0';
+      card.style.opacity = '0.4';
+      card.style.pointerEvents = 'none';
+    } else {
+      card.style.opacity = '';
+      card.style.pointerEvents = '';
+    }
+  });
 }
 
 function v(id, i) {
