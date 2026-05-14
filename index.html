@@ -13,157 +13,68 @@
 <link href="https://fonts.googleapis.com/css2?family=Pirata+One&family=Roboto&display=swap" rel="stylesheet">
 <style>
 body {
-    margin:0;
-    font-family:'Roboto',sans-serif;
-    color:#f5f1e6;
-    text-align:center;
+    margin:0; font-family:'Roboto',sans-serif; color:#f5f1e6; text-align:center;
     background:linear-gradient(270deg,rgba(59,42,26,0.97),rgba(27,27,27,0.97),rgba(59,42,26,0.97));
-    background-size:600% 600%;
-    animation:parchment 25s ease infinite;
-    transition:background 1.5s ease;
-    min-height:100vh;
+    background-size:600% 600%; animation:parchment 25s ease infinite; transition:background 1.5s ease; min-height:100vh;
 }
 body.stormy {
     background:linear-gradient(270deg,rgba(10,10,26,0.97),rgba(26,26,46,0.97),rgba(13,17,23,0.97),rgba(26,26,46,0.97),rgba(10,10,26,0.97));
-    background-size:600% 600%;
-    animation:storm 8s ease infinite;
+    background-size:600% 600%; animation:storm 8s ease infinite;
 }
-@keyframes parchment {
-    0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%}
-}
-@keyframes storm {
-    0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%}
-}
+@keyframes parchment { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+@keyframes storm { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
 body.stormy::after {
-    content:'';
-    position:fixed;
-    top:0;left:0;right:0;bottom:0;
-    pointer-events:none;
-    background:transparent;
-    animation:lightning 7s infinite;
-    z-index:999;
+    content:''; position:fixed; top:0;left:0;right:0;bottom:0; pointer-events:none;
+    background:transparent; animation:lightning 7s infinite; z-index:999;
 }
 @keyframes lightning {
     0%,89%,91%,93%,100%{background:transparent;}
-    90%{background:rgba(100,150,255,0.08);}
-    92%{background:rgba(100,150,255,0.05);}
+    90%{background:rgba(100,150,255,0.08);} 92%{background:rgba(100,150,255,0.05);}
 }
-h1 {
-    font-family:'Pirata One',cursive;
-    font-size:clamp(28px,5vw,44px);
-    color:gold;
-    text-shadow:3px 3px 8px black;
-    margin-bottom:0;
-}
-h3 {font-style:italic;color:#ffcc66;margin-top:5px;}
-table {
-    margin:15px auto;
-    border-collapse:collapse;
-    width:98%;
-    background:rgba(0,0,0,0.6);
-    box-shadow:0 0 20px black;
-    font-size:clamp(12px,2.5vw,16px);
-}
-th,td {border:1px solid #555;padding:5px;}
-th {background:#3b2a1a;color:gold;}
+h1 { font-family:'Pirata One',cursive; font-size:clamp(28px,5vw,44px); color:gold; text-shadow:3px 3px 8px black; margin-bottom:0; }
+h3 { font-style:italic; color:#ffcc66; margin-top:5px; }
+table { margin:15px auto; border-collapse:collapse; width:98%; background:rgba(0,0,0,0.6); box-shadow:0 0 20px black; font-size:clamp(12px,2.5vw,16px); }
+th,td { border:1px solid #555; padding:5px; }
+th { background:#3b2a1a; color:gold; }
 .player-card {
-    background:rgba(0,0,0,0.6);
-    border:1px solid #555;
-    border-radius:8px;
-    margin:10px auto;
-    width:95%;
-    max-width:500px;
-    padding:10px 12px;
-    box-shadow:0 0 10px black;
-    text-align:left;
+    background:rgba(0,0,0,0.6); border:1px solid #555; border-radius:8px;
+    margin:10px auto; width:95%; max-width:500px; padding:10px 12px; box-shadow:0 0 10px black; text-align:left;
 }
 .player-card h4 {
-    margin:0 0 10px;
-    font-family:'Pirata One',cursive;
-    color:gold;
-    font-size:1.2em;
-    text-align:center;
-    border-bottom:1px solid #555;
-    padding-bottom:6px;
+    margin:0 0 10px; font-family:'Pirata One',cursive; color:gold; font-size:1.2em;
+    text-align:center; border-bottom:1px solid #555; padding-bottom:6px;
 }
-.fields-grid {
-    display:grid;
-    grid-template-columns:1fr 1fr 1fr;
-    gap:8px;
-}
-.field-row {
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:4px;
-}
-.field-row label {font-size:0.75em;color:#ffcc66;text-align:center;}
-.field-row input {
-    width:60px;padding:6px 4px;border-radius:4px;border:none;
-    text-align:center;background:#222;color:white;font-size:1em;
-}
-.stepper {
-    display:flex;align-items:center;gap:4px;
-}
+.fields-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; }
+.field-row { display:flex; flex-direction:column; align-items:center; gap:4px; }
+.field-row label { font-size:0.75em; color:#ffcc66; text-align:center; }
+.stepper { display:flex; align-items:center; gap:4px; }
 .stepper button {
-    padding:4px 10px;margin:0;font-size:1.1em;font-weight:bold;
-    background:linear-gradient(145deg,#5a1a1a,#8b0000);
-    border-radius:6px;min-width:32px;line-height:1;
+    padding:4px 10px; margin:0; font-size:1.1em; font-weight:bold;
+    background:linear-gradient(145deg,#5a1a1a,#8b0000); border-radius:6px; min-width:32px; line-height:1;
+    border:none; color:white; cursor:pointer;
 }
-.stepper span {
-    min-width:32px;text-align:center;font-size:1em;
-    color:white;display:inline-block;
+.stepper span { min-width:32px; text-align:center; font-size:1em; color:white; display:inline-block; }
+.field-full { grid-column:1 / -1; display:flex; align-items:center; justify-content:center; gap:8px; }
+.field-full label { font-size:0.75em; color:#ffcc66; }
+.btn-main {
+    padding:10px; margin:5px; border:none; border-radius:6px;
+    background:linear-gradient(145deg,#8b0000,#b22222); color:white; font-weight:bold; cursor:pointer;
 }
-.field-full {
-    grid-column:1 / -1;
-    display:flex;align-items:center;justify-content:center;gap:8px;
-}
-.field-full label {font-size:0.75em;color:#ffcc66;}
-.field-full input {
-    width:70px;padding:6px 4px;border-radius:4px;border:none;
-    text-align:center;background:#222;color:white;font-size:1em;
-}
-.field-full .stepper span {
-    min-width:40px;
-}
-button {
-    padding:10px;margin:5px;border:none;border-radius:6px;
-    background:linear-gradient(145deg,#8b0000,#b22222);
-    color:white;font-weight:bold;cursor:pointer;
-}
-button:hover {background:#ff4040;}
-.total {font-weight:bold;color:#00ffcc;}
-#gameArea,#finalBoard {display:none;}
+.btn-main:hover { background:#ff4040; }
+.total { font-weight:bold; color:#00ffcc; }
+#gameArea,#finalBoard { display:none; }
 #stormBanner {
-    display:none;
-    background:linear-gradient(135deg,#0d1b3e,#1a0a2e);
-    border:2px solid #4466ff;
-    border-radius:10px;
-    margin:10px auto;
-    padding:12px 16px;
-    max-width:500px;
-    width:92%;
-    box-shadow:0 0 18px #2244aa,inset 0 0 10px rgba(50,80,200,0.2);
-    animation:bannerPulse 3s ease infinite;
+    display:none; background:linear-gradient(135deg,#0d1b3e,#1a0a2e); border:2px solid #4466ff;
+    border-radius:10px; margin:10px auto; padding:12px 16px; max-width:500px; width:92%;
+    box-shadow:0 0 18px #2244aa; animation:bannerPulse 3s ease infinite;
 }
 @keyframes bannerPulse {
-    0%,100%{box-shadow:0 0 18px #2244aa,inset 0 0 10px rgba(50,80,200,0.2);}
-    50%{box-shadow:0 0 30px #4466ff,inset 0 0 16px rgba(80,120,255,0.35);}
+    0%,100%{box-shadow:0 0 18px #2244aa;} 50%{box-shadow:0 0 30px #4466ff;}
 }
-#stormBanner p {
-    margin:0;font-family:'Pirata One',cursive;
-    font-size:clamp(14px,3.5vw,20px);color:#aaccff;
-    text-shadow:0 0 8px #4488ff;line-height:1.4;
-}
-#stormBanner .storm-emoji {font-size:1.4em;display:block;margin-bottom:4px;}
-#setup input {
-    padding:6px;border-radius:4px;border:none;
-    background:#222;color:white;text-align:center;
-}
-@media(max-width:400px){
-    .fields-grid{grid-template-columns:1fr 1fr;}
-    button{width:90%;max-width:300px;}
-}
+#stormBanner p { margin:0; font-family:'Pirata One',cursive; font-size:clamp(14px,3.5vw,20px); color:#aaccff; text-shadow:0 0 8px #4488ff; line-height:1.4; }
+#stormBanner .storm-emoji { font-size:1.4em; display:block; margin-bottom:4px; }
+#setup input { padding:6px; border-radius:4px; border:none; background:#222; color:white; text-align:center; }
+@media(max-width:400px) { .fields-grid{grid-template-columns:1fr 1fr;} .btn-main{width:90%;max-width:300px;} }
 </style>
 </head>
 <body>
@@ -178,86 +89,73 @@ button:hover {background:#ff4040;}
 <div id="setup">
 <h2>Joueurs</h2>
 <input type="text" id="playerName" placeholder="Nom joueur">
-<button onclick="addPlayer()">Ajouter</button>
-<button onclick="startGame()">Démarrer la partie</button>
-<button onclick="clearSave()">Effacer sauvegarde</button>
+<button class="btn-main" id="btnAdd">Ajouter</button>
+<button class="btn-main" id="btnStart">Démarrer la partie</button>
+<button class="btn-main" id="btnClear">Effacer sauvegarde</button>
 <div id="playerList" style="margin-top:10px;"></div>
 </div>
 
 <div id="gameArea">
 <h2>Manche <span id="roundNum">1</span>/10</h2>
 <div id="playerCards"></div>
-<button onclick="validateRound()">Valider manche</button>
-<button onclick="undoRound()">Annuler dernière manche</button>
-<button onclick="resetGame()">Reset partie</button>
+<button class="btn-main" id="btnValidate">Valider manche</button>
+<button class="btn-main" id="btnUndo">Annuler dernière manche</button>
+<button class="btn-main" id="btnReset">Reset partie</button>
 </div>
 
 <h2>Classement</h2>
-<table>
-<thead><tr><th>Joueur</th><th>Total</th></tr></thead>
-<tbody id="scoreBody"></tbody>
-</table>
+<table><thead><tr><th>Joueur</th><th>Total</th></tr></thead><tbody id="scoreBody"></tbody></table>
 
 <h2>Historique</h2>
-<table>
-<thead><tr><th>Manche</th><th>Détails</th></tr></thead>
-<tbody id="historyBody"></tbody>
-</table>
+<table><thead><tr><th>Manche</th><th>Détails</th></tr></thead><tbody id="historyBody"></tbody></table>
 
 <div id="finalBoard">
 <h2>🏆 Résultat final</h2>
-<table>
-<thead><tr><th>Position</th><th>Joueur</th><th>Score</th></tr></thead>
-<tbody id="finalBody"></tbody>
-</table>
+<table><thead><tr><th>Position</th><th>Joueur</th><th>Score</th></tr></thead><tbody id="finalBody"></tbody></table>
 </div>
 
 <script>
+// ── Service Worker ────────────────────────────────────────────────────────────
 (function() {
-  const swCode = atob('Y29uc3QgQ0FDSEU9J3NrdWxsa2luZy12MSc7CnNlbGYuYWRkRXZlbnRMaXN0ZW5lcignaW5zdGFsbCcsZT0+e2Uud2FpdFVudGlsKGNhY2hlcy5vcGVuKENBQ0hFKS50aGVuKGM9PmMuYWRkQWxsKFsnLiddKSkpO3NlbGYuc2tpcFdhaXRpbmcoKTt9KTsKc2VsZi5hZGRFdmVudExpc3RlbmVyKCdhY3RpdmF0ZScsZT0+e3NlbGYuY2xpZW50cy5jbGFpbSgpO30pOwpzZWxmLmFkZEV2ZW50TGlzdGVuZXIoJ2ZldGNoJyxlPT57ZS5yZXNwb25kV2l0aChjYWNoZXMubWF0Y2goZS5yZXF1ZXN0KS50aGVuKHI9PnJ8fGZldGNoKGUucmVxdWVzdCkpKTt9KTs=');
+  var swCode = atob('Y29uc3QgQ0FDSEU9J3NrdWxsa2luZy12MSc7CnNlbGYuYWRkRXZlbnRMaXN0ZW5lcignaW5zdGFsbCcsZT0+e2Uud2FpdFVudGlsKGNhY2hlcy5vcGVuKENBQ0hFKS50aGVuKGM9PmMuYWRkQWxsKFsnLiddKSkpO3NlbGYuc2tpcFdhaXRpbmcoKTt9KTsKc2VsZi5hZGRFdmVudExpc3RlbmVyKCdhY3RpdmF0ZScsZT0+e3NlbGYuY2xpZW50cy5jbGFpbSgpO30pOwpzZWxmLmFkZEV2ZW50TGlzdGVuZXIoJ2ZldGNoJyxlPT57ZS5yZXNwb25kV2l0aChjYWNoZXMubWF0Y2goZS5yZXF1ZXN0KS50aGVuKHI9PnJ8fGZldGNoKGUucmVxdWVzdCkpKTt9KTs=');
   if ('serviceWorker' in navigator) {
-    const blob = new Blob([swCode], {type:'text/javascript'});
-    const url = URL.createObjectURL(blob);
-    navigator.serviceWorker.register(url).then(()=>console.log('SW ok')).catch(e=>console.log('SW err',e));
+    var blob = new Blob([swCode], {type:'text/javascript'});
+    navigator.serviceWorker.register(URL.createObjectURL(blob));
   }
 })();
 
-let players = [], playerOrder = [], history = [], round = 1;
+// ── App ───────────────────────────────────────────────────────────────────────
+var players = [], playerOrder = [], history = [], round = 1;
 
-(function(){
-  let data = JSON.parse(localStorage.getItem('skullkingSave'));
-  if (data && data.players) {
-    players = data.players.map(p => ({name:p.name, total:0}));
-    playerOrder = players.map((_,i) => i);
-    updatePlayerList();
-  }
-})();
-
-function saveNames() { localStorage.setItem('skullkingSave', JSON.stringify({players})); }
+function saveNames() {
+  localStorage.setItem('skullkingSave', JSON.stringify({players: players}));
+}
 
 function addPlayer() {
-  let name = playerName.value.trim();
+  var name = document.getElementById('playerName').value.trim();
   if (!name) return;
-  players.push({name, total:0});
-  playerOrder = players.map((_,i) => i);
-  playerName.value = '';
-  updatePlayerList(); saveNames();
+  players.push({name: name, total: 0});
+  playerOrder = players.map(function(_,i){ return i; });
+  document.getElementById('playerName').value = '';
+  updatePlayerList();
+  saveNames();
 }
 
 function updatePlayerList() {
-  playerList.innerHTML = players.map(p => p.name).join(' | ');
+  document.getElementById('playerList').innerHTML = players.map(function(p){ return p.name; }).join(' | ');
 }
 
 function startGame() {
-  if (players.length < 2) return alert('Ajoute au moins 2 joueurs !');
-  playerOrder = players.map((_,i) => i);
-  setup.style.display = 'none';
-  gameArea.style.display = 'block';
-  buildInputs(); updateScores();
+  if (players.length < 2) { alert('Ajoute au moins 2 joueurs !'); return; }
+  playerOrder = players.map(function(_,i){ return i; });
+  document.getElementById('setup').style.display = 'none';
+  document.getElementById('gameArea').style.display = 'block';
+  buildInputs();
+  updateScores();
 }
 
 function buildInputs() {
-  roundNum.textContent = round;
+  document.getElementById('roundNum').textContent = round;
   if (round >= 6) {
     document.body.classList.add('stormy');
     document.getElementById('stormBanner').style.display = 'block';
@@ -265,56 +163,74 @@ function buildInputs() {
     document.body.classList.remove('stormy');
     document.getElementById('stormBanner').style.display = 'none';
   }
-  let container = document.getElementById('playerCards');
+  var container = document.getElementById('playerCards');
   container.innerHTML = '';
-  playerOrder.forEach((pi, i) => {
-    const p = players[pi];
-    container.innerHTML += `<div class="player-card">
-  <h4>${p.name}</h4>
-  <div class="fields-grid">
-    <div class="field-row"><label>Pari (0-${round})</label><div class="stepper"><button type="button" onclick="step('bet${i}',-1,0,${round})">−</button><span id="bet${i}">0</span><button type="button" onclick="step('bet${i}',1,0,${round})">+</button></div></div>
-    <div class="field-row"><label>Plis (0-${round})</label><div class="stepper"><button type="button" onclick="step('made${i}',-1,0,${round})">−</button><span id="made${i}">0</span><button type="button" onclick="step('made${i}',1,0,${round})">+</button></div></div>
-    <div class="field-row"><label>Pirates</label><div class="stepper"><button type="button" onclick="step('pirate${i}',-1,0,99)">−</button><span id="pirate${i}">0</span><button type="button" onclick="step('pirate${i}',1,0,99)">+</button></div></div>
-    <div class="field-row"><label>Sirènes</label><div class="stepper"><button type="button" onclick="step('mermaid${i}',-1,0,99)">−</button><span id="mermaid${i}">0</span><button type="button" onclick="step('mermaid${i}',1,0,99)">+</button></div></div>
-    <div class="field-row"><label>Skull King</label><div class="stepper"><button type="button" onclick="step('skull${i}',-1,0,99)">−</button><span id="skull${i}">0</span><button type="button" onclick="step('skull${i}',1,0,99)">+</button></div></div>
-    <div class="field-row"><label>Carte 14</label><div class="stepper"><button type="button" onclick="step('fourteen${i}',-10,0,990)">−</button><span id="fourteen${i}">0</span><button type="button" onclick="step('fourteen${i}',10,0,990)">+</button></div></div>
-    <div class="field-full"><label>Bonus extension :</label><div class="stepper"><button type="button" onclick="step('extra${i}',-10,-990,990)">−</button><span id="extra${i}">0</span><button type="button" onclick="step('extra${i}',10,-990,990)">+</button></div></div>
-  </div>
-</div>`;
+  playerOrder.forEach(function(pi, i) {
+    var p = players[pi];
+    var card = document.createElement('div');
+    card.className = 'player-card';
+    card.innerHTML = '<h4>' + p.name + '</h4>' +
+      '<div class="fields-grid">' +
+        makeField('Pari (0-'+round+')', 'bet'+i, -1, 1, 0, round) +
+        makeField('Plis (0-'+round+')', 'made'+i, -1, 1, 0, round) +
+        makeField('Pirates', 'pirate'+i, -1, 1, 0, 99) +
+        makeField('Sirènes', 'mermaid'+i, -1, 1, 0, 99) +
+        makeField('Skull King', 'skull'+i, -1, 1, 0, 99) +
+        makeField('Carte 14', 'fourteen'+i, -10, 10, 0, 990) +
+        '<div class="field-full"><label>Bonus extension :</label>' +
+          '<div class="stepper">' +
+            '<button type="button" data-id="extra'+i+'" data-delta="-10" data-min="-990" data-max="990">−</button>' +
+            '<span id="extra'+i+'">0</span>' +
+            '<button type="button" data-id="extra'+i+'" data-delta="10" data-min="-990" data-max="990">+</button>' +
+          '</div></div>' +
+      '</div>';
+    container.appendChild(card);
   });
+  // Wire stepper clicks via delegation on container
+  container.addEventListener('click', function(e) {
+    var btn = e.target.closest('button[data-id]');
+    if (!btn) return;
+    step(btn.dataset.id, +btn.dataset.delta, +btn.dataset.min, +btn.dataset.max);
+  });
+  // Init bonus state
+  playerOrder.forEach(function(pi, i) { updateBonusState(i); });
+}
+
+function makeField(label, id, dMinus, dPlus, mn, mx) {
+  return '<div class="field-row"><label>' + label + '</label>' +
+    '<div class="stepper">' +
+      '<button type="button" data-id="'+id+'" data-delta="'+dMinus+'" data-min="'+mn+'" data-max="'+mx+'">−</button>' +
+      '<span id="'+id+'">0</span>' +
+      '<button type="button" data-id="'+id+'" data-delta="'+dPlus+'" data-min="'+mn+'" data-max="'+mx+'">+</button>' +
+    '</div></div>';
 }
 
 function step(id, delta, min, max) {
-  const el = document.getElementById(id);
+  var el = document.getElementById(id);
   if (!el) return;
-
-  // Bloquer l'increment des bonus si plis = 0
-  const bonusMatch = id.match(/^(pirate|mermaid|skull|fourteen)(\d+)$/);
+  var bonusMatch = id.match(/^(pirate|mermaid|skull|fourteen)(\d+)$/);
   if (bonusMatch && delta > 0) {
-    const idx = bonusMatch[2];
-    const madeEl = document.getElementById('made'+idx);
-    const made = madeEl ? (+(madeEl.textContent) || 0) : 0;
+    var idx = bonusMatch[2];
+    var madeEl = document.getElementById('made'+idx);
+    var made = madeEl ? (+madeEl.textContent || 0) : 0;
     if (made === 0) return;
   }
-
-  let val = +(el.textContent) || 0;
+  var val = +el.textContent || 0;
   val = Math.min(max, Math.max(min, val + delta));
   el.textContent = val;
-
-  // Si plis change, remettre bonus a 0 si made=0
-  const madeMatch = id.match(/^made(\d+)$/);
+  var madeMatch = id.match(/^made(\d+)$/);
   if (madeMatch) updateBonusState(+madeMatch[1]);
 }
 
 function updateBonusState(i) {
-  const madeEl = document.getElementById('made'+i);
+  var madeEl = document.getElementById('made'+i);
   if (!madeEl) return;
-  const made = +(madeEl.textContent) || 0;
-  const bonusIds = ['pirate','mermaid','skull','fourteen'];
-  bonusIds.forEach(field => {
-    const el = document.getElementById(field+i);
+  var made = +madeEl.textContent || 0;
+  var bonusIds = ['pirate','mermaid','skull','fourteen'];
+  bonusIds.forEach(function(field) {
+    var el = document.getElementById(field+i);
     if (!el) return;
-    const card = el.parentElement;
+    var card = el.parentElement;
     if (made === 0) {
       el.textContent = '0';
       card.style.opacity = '0.4';
@@ -326,45 +242,38 @@ function updateBonusState(i) {
   });
 }
 
-function v(id, i) {
-  const el = document.getElementById(id+i);
-  if (!el) return 0;
-  return +(el.textContent) || 0;
+function getVal(id) {
+  var el = document.getElementById(id);
+  return el ? (+el.textContent || 0) : 0;
 }
 
 function validateRound() {
-  let details = [];
-  const playersBefore = JSON.parse(JSON.stringify(players));
-  playerOrder.forEach((pi, i) => {
-    const p = players[pi];
-    let bet=v('bet',i), made=v('made',i);
-    let pirates=v('pirate',i), mermaids=v('mermaid',i),
-        skull=v('skull',i), fourteen=v('fourteen',i), extra=v('extra',i);
-    let score = 0;
-    const betSuccess = (bet === 0 && made === 0) || (bet > 0 && bet === made);
+  var details = [];
+  var playersBefore = JSON.parse(JSON.stringify(players));
+  playerOrder.forEach(function(pi, i) {
+    var p = players[pi];
+    var bet = getVal('bet'+i), made = getVal('made'+i);
+    var pirates = getVal('pirate'+i), mermaids = getVal('mermaid'+i);
+    var skull = getVal('skull'+i), fourteen = getVal('fourteen'+i), extra = getVal('extra'+i);
+    var score = 0;
     if (bet === 0) {
       if (made === 0) {
-        score += 10*round;
-        score += pirates*30 + mermaids*20 + skull*40 + fourteen*10;
+        score += 10*round + pirates*30 + mermaids*20 + skull*40 + fourteen*10 + extra;
       } else {
-        score -= 10*round;
-        score += extra;
+        score += -10*round + extra;
         p.total += score;
-        details.push(`${p.name}: ${score}`);
+        details.push(p.name + ': ' + score);
         return;
       }
     } else if (bet === made) {
-      score += 20*bet;
-      score += pirates*30 + mermaids*20 + skull*40 + fourteen*10 + extra;
+      score += 20*bet + pirates*30 + mermaids*20 + skull*40 + fourteen*10 + extra;
     } else {
-      score -= 10*Math.abs(bet-made);
-      // Pari raté : aucun bonus carte, pas d'extension non plus
+      score += -10*Math.abs(bet-made) + pirates*30 + mermaids*20 + skull*40 + fourteen*10 + extra;
     }
-    if (bet === 0 && made === 0) score += extra;
     p.total += score;
-    details.push(`${p.name}: ${score>0?'+':''}${score}`);
+    details.push(p.name + ': ' + (score > 0 ? '+' : '') + score);
   });
-  history.push({round, details, players:JSON.parse(JSON.stringify(playersBefore)), playerOrder:[...playerOrder]});
+  history.push({round: round, details: details, players: playersBefore, playerOrder: playerOrder.slice()});
   round++;
   updateScores(); rebuildHistory(); buildInputs();
   if (round > 10) showFinal();
@@ -372,7 +281,7 @@ function validateRound() {
 
 function undoRound() {
   if (!history.length) return;
-  let last = history.pop();
+  var last = history.pop();
   players = last.players;
   playerOrder = last.playerOrder;
   round = last.round;
@@ -380,30 +289,47 @@ function undoRound() {
 }
 
 function updateScores() {
-  let sorted = [...players].sort((a,b) => b.total - a.total);
-  scoreBody.innerHTML = sorted.map(p => `<tr><td>${p.name}</td><td class="total">${p.total}</td></tr>`).join('');
+  var sorted = players.slice().sort(function(a,b){ return b.total - a.total; });
+  document.getElementById('scoreBody').innerHTML = sorted.map(function(p) {
+    return '<tr><td>' + p.name + '</td><td class="total">' + p.total + '</td></tr>';
+  }).join('');
 }
 
 function rebuildHistory() {
-  historyBody.innerHTML = history.map(h => `<tr><td>${h.round}</td><td>${h.details.join(' | ')}</td></tr>`).join('');
+  document.getElementById('historyBody').innerHTML = history.map(function(h) {
+    return '<tr><td>' + h.round + '</td><td>' + h.details.join(' | ') + '</td></tr>';
+  }).join('');
 }
 
 function showFinal() {
-  finalBoard.style.display = 'block';
-  let sorted = [...players].sort((a,b) => b.total - a.total);
-  finalBody.innerHTML = sorted.map((p,i) => `<tr><td>${i+1}</td><td>${p.name}</td><td>${p.total}</td></tr>`).join('');
+  document.getElementById('finalBoard').style.display = 'block';
+  var sorted = players.slice().sort(function(a,b){ return b.total - a.total; });
+  document.getElementById('finalBody').innerHTML = sorted.map(function(p,i) {
+    return '<tr><td>' + (i+1) + '</td><td>' + p.name + '</td><td>' + p.total + '</td></tr>';
+  }).join('');
 }
 
 function resetGame() { location.reload(); }
 function clearSave() { localStorage.removeItem('skullkingSave'); location.reload(); }
 
-window.step = step;
-window.addPlayer = addPlayer;
-window.startGame = startGame;
-window.clearSave = clearSave;
-window.validateRound = validateRound;
-window.undoRound = undoRound;
-window.resetGame = resetGame;
+// ── Init sauvegarde ───────────────────────────────────────────────────────────
+(function() {
+  var data = JSON.parse(localStorage.getItem('skullkingSave'));
+  if (data && data.players) {
+    players = data.players.map(function(p){ return {name:p.name, total:0}; });
+    playerOrder = players.map(function(_,i){ return i; });
+    updatePlayerList();
+  }
+})();
+
+// ── Wiring boutons statiques ──────────────────────────────────────────────────
+document.getElementById('btnAdd').onclick = addPlayer;
+document.getElementById('btnStart').onclick = startGame;
+document.getElementById('btnClear').onclick = clearSave;
+document.getElementById('btnValidate').onclick = validateRound;
+document.getElementById('btnUndo').onclick = undoRound;
+document.getElementById('btnReset').onclick = resetGame;
+document.getElementById('playerName').onkeydown = function(e) { if(e.key==='Enter') addPlayer(); };
 </script>
 </body>
 </html>
