@@ -102,6 +102,18 @@ th {background:#3b2a1a;color:gold;}
     width:60px;padding:6px 4px;border-radius:4px;border:none;
     text-align:center;background:#222;color:white;font-size:1em;
 }
+.stepper {
+    display:flex;align-items:center;gap:4px;
+}
+.stepper button {
+    padding:4px 10px;margin:0;font-size:1.1em;font-weight:bold;
+    background:linear-gradient(145deg,#5a1a1a,#8b0000);
+    border-radius:6px;min-width:32px;line-height:1;
+}
+.stepper span {
+    min-width:32px;text-align:center;font-size:1em;
+    color:white;display:inline-block;
+}
 .field-full {
     grid-column:1 / -1;
     display:flex;align-items:center;justify-content:center;gap:8px;
@@ -110,6 +122,9 @@ th {background:#3b2a1a;color:gold;}
 .field-full input {
     width:70px;padding:6px 4px;border-radius:4px;border:none;
     text-align:center;background:#222;color:white;font-size:1em;
+}
+.field-full .stepper span {
+    min-width:40px;
 }
 button {
     padding:10px;margin:5px;border:none;border-radius:6px;
@@ -257,29 +272,35 @@ function buildInputs() {
     container.innerHTML += `<div class="player-card">
   <h4>${p.name}</h4>
   <div class="fields-grid">
-    <div class="field-row"><label>Pari (0-${round})</label><input type="number" min="0" max="${round}" id="bet${i}" value="0" inputmode="numeric"></div>
-    <div class="field-row"><label>Plis (0-${round})</label><input type="number" min="0" max="${round}" id="made${i}" value="0" inputmode="numeric"></div>
-    <div class="field-row"><label>Pirates</label><input type="number" min="0" id="pirate${i}" value="0" inputmode="numeric"></div>
-    <div class="field-row"><label>Sirènes</label><input type="number" min="0" id="mermaid${i}" value="0" inputmode="numeric"></div>
-    <div class="field-row"><label>Skull King</label><input type="number" min="0" id="skull${i}" value="0" inputmode="numeric"></div>
-    <div class="field-row"><label>Carte 14</label><input type="number" min="0" id="fourteen${i}" value="0" inputmode="numeric"></div>
-    <div class="field-full"><label>Bonus extension :</label><input type="number" step="10" id="extra${i}" value="0" inputmode="numeric"></div>
+    <div class="field-row"><label>Pari (0-${round})</label><div class="stepper"><button type="button" onclick="step('bet${i}',-1,0,${round})">−</button><span id="bet${i}">0</span><button type="button" onclick="step('bet${i}',1,0,${round})">+</button></div></div>
+    <div class="field-row"><label>Plis (0-${round})</label><div class="stepper"><button type="button" onclick="step('made${i}',-1,0,${round})">−</button><span id="made${i}">0</span><button type="button" onclick="step('made${i}',1,0,${round})">+</button></div></div>
+    <div class="field-row"><label>Pirates</label><div class="stepper"><button type="button" onclick="step('pirate${i}',-1,0,99)">−</button><span id="pirate${i}">0</span><button type="button" onclick="step('pirate${i}',1,0,99)">+</button></div></div>
+    <div class="field-row"><label>Sirènes</label><div class="stepper"><button type="button" onclick="step('mermaid${i}',-1,0,99)">−</button><span id="mermaid${i}">0</span><button type="button" onclick="step('mermaid${i}',1,0,99)">+</button></div></div>
+    <div class="field-row"><label>Skull King</label><div class="stepper"><button type="button" onclick="step('skull${i}',-1,0,99)">−</button><span id="skull${i}">0</span><button type="button" onclick="step('skull${i}',1,0,99)">+</button></div></div>
+    <div class="field-row"><label>Carte 14</label><div class="stepper"><button type="button" onclick="step('fourteen${i}',-10,0,990)">−</button><span id="fourteen${i}">0</span><button type="button" onclick="step('fourteen${i}',10,0,990)">+</button></div></div>
+    <div class="field-full"><label>Bonus extension :</label><div class="stepper"><button type="button" onclick="step('extra${i}',-10,-990,990)">−</button><span id="extra${i}">0</span><button type="button" onclick="step('extra${i}',10,-990,990)">+</button></div></div>
   </div>
 </div>`;
   });
 }
 
+function step(id, delta, min, max) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  let val = +(el.textContent) || 0;
+  val = Math.min(max, Math.max(min, val + delta));
+  el.textContent = val;
+}
+
 function v(id, i) {
-  let val = +document.getElementById(id+i).value || 0;
-  if (id !== 'extra') {
-    val = Math.max(0, val);
-    if (id === 'bet' || id === 'made') val = Math.min(val, round);
-  }
-  return val;
+  const el = document.getElementById(id+i);
+  if (!el) return 0;
+  return +(el.textContent) || 0;
 }
 
 function validateRound() {
   let details = [];
+  const playersBefore = JSON.parse(JSON.stringify(players));
   playerOrder.forEach((pi, i) => {
     const p = players[pi];
     let bet=v('bet',i), made=v('made',i);
@@ -306,7 +327,7 @@ function validateRound() {
     p.total += score;
     details.push(`${p.name}: ${score>0?'+':''}${score}`);
   });
-  history.push({round, details, players:JSON.parse(JSON.stringify(players)), playerOrder:[...playerOrder]});
+  history.push({round, details, players:JSON.parse(JSON.stringify(playersBefore)), playerOrder:[...playerOrder]});
   round++;
   updateScores(); rebuildHistory(); buildInputs();
   if (round > 10) showFinal();
@@ -338,6 +359,14 @@ function showFinal() {
 
 function resetGame() { location.reload(); }
 function clearSave() { localStorage.removeItem('skullkingSave'); location.reload(); }
+
+window.step = step;
+window.addPlayer = addPlayer;
+window.startGame = startGame;
+window.clearSave = clearSave;
+window.validateRound = validateRound;
+window.undoRound = undoRound;
+window.resetGame = resetGame;
 </script>
 </body>
 </html>
