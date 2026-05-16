@@ -302,7 +302,7 @@ function validateRound(){
     var pirates=getVal('pirate'+i),mermaids=getVal('mermaid'+i);
     var skull=getVal('skull'+i),fourteen=getVal('fourteen'+i);
     var extra=withExt?getVal('extra'+i):0;
-    var cards=pirates*30+mermaids*20+skull*40+fourteen*10;
+    var cards=pirates*30+mermaids*20+skull*40+fourteen;
     var score=0;
     if(bet===0){
       if(made===0){score=10*round+cards+extra;}
